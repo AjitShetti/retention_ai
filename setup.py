@@ -1,25 +1,25 @@
-from setuptools import setup, find_packages
-from typing import List
+from pathlib import Path
 
-HYPEN_E_DOT = '-e .'
+from setuptools import find_packages, setup
 
-def get_requirements(file_path:str)->List[str]:
 
-    requirements = []
-    with open(file_path) as file_obj:
-        requirements = file_obj.readlines()
-        requirements = [req.replace("\n", "") for req in requirements]
+def get_requirements(file_path: str) -> list[str]:
+    requirements_path = Path(file_path)
+    return [
+        line.strip()
+        for line in requirements_path.read_text(encoding="utf-8").splitlines()
+        if line.strip() and not line.startswith("#")
+    ]
 
-        if HYPEN_E_DOT in requirements:
-            requirements.remove(HYPEN_E_DOT)
-
-    return requirements
 
 setup(
-    name = 'retention_ai',
-    version='0.0.1',
-    author='Ajit',
-    author_email='ajitpshetti@gmail.com',
+    name="retention_ai",
+    version="0.1.0",
+    author="Ajit",
+    author_email="ajitpshetti@gmail.com",
+    description="Churn prediction API and training pipeline for customer retention.",
     packages=find_packages(),
-    install_requires = get_requirements('requirements.txt')
+    include_package_data=True,
+    install_requires=get_requirements("requirements.txt"),
+    python_requires=">=3.10",
 )

@@ -1,0 +1,20 @@
+# Set default behavior to automatically normalize line endings for text files
+* text=auto
+
+# Explicitly set line endings to LF for specific file types
+*.py text eol=lf
+*.ipynb text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.sh text eol=lf
+
+# Treat certain files as binary (no line ending conversion)
+*.joblib binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary

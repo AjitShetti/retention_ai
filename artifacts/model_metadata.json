@@ -1,0 +1,32 @@
+{
+  "model_name": "retention-baseline",
+  "model_version": "0.1.0",
+  "artifact_path": "D:\\ML Projects\\retention_ai\\artifacts\\churn_model.joblib",
+  "feature_columns": [
+    "SeniorCitizen",
+    "tenure",
+    "MonthlyCharges",
+    "TotalCharges",
+    "gender",
+    "Partner",
+    "Dependents",
+    "PhoneService",
+    "MultipleLines",
+    "InternetService",
+    "OnlineSecurity",
+    "OnlineBackup",
+    "DeviceProtection",
+    "TechSupport",
+    "StreamingTV",
+    "StreamingMovies",
+    "Contract",
+    "PaperlessBilling",
+    "PaymentMethod"
+  ],
+  "metrics": {
+    "validation_accuracy": 0.7381,
+    "validation_roc_auc": 0.8413,
+    "train_rows": 5634,
+    "validation_rows": 1409
+  }
+}
