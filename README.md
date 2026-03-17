@@ -38,14 +38,14 @@ notebooks/data/data.csv
 
 ```mermaid
 flowchart LR
-  D[notebooks/data/data.csv] --> T[src.pipeline.train\ntrain + persist]
-  T --> A[artifacts/churn_model.joblib]
-  T --> M[artifacts/model_metadata.json]
-  A --> API[app.main (FastAPI)]
+  D["notebooks/data/data.csv"] --> T["src.pipeline.train<br/>train + persist"]
+  T --> A["artifacts/churn_model.joblib"]
+  T --> M["artifacts/model_metadata.json"]
+  A --> API["app.main (FastAPI)"]
   M --> API
-  API --> H[GET /health]
-  API --> P[POST /predict]
-  P --> R[JSON response]
+  API --> H["GET /health"]
+  API --> P["POST /predict"]
+  P --> R["JSON response"]
 ```
 
 ## How it works
