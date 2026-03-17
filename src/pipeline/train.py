@@ -91,7 +91,7 @@ def persist_artifacts(model_bundle: dict[str, Any], settings: Settings) -> dict[
     metadata = {
         "model_name": settings.model_name,
         "model_version": settings.model_version,
-        "artifact_path": str(settings.model_path),
+        "artifact_filename": settings.model_filename,
         "feature_columns": model_bundle["feature_columns"],
         "metrics": model_bundle["metrics"],
     }

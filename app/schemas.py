@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class PredictionRequest(BaseModel):
@@ -25,6 +25,38 @@ class PredictionRequest(BaseModel):
     PaymentMethod: str
     MonthlyCharges: float = Field(..., ge=0)
     TotalCharges: float | str
+
+    @field_validator("gender", "InternetService", "Contract", "PaymentMethod", mode="before")
+    @classmethod
+    def validate_domain_fields(cls, value: object, info):
+        if value is None:
+            raise ValueError(f"{info.field_name} is required.")
+
+        raw = str(value).strip()
+        normalized = raw.lower()
+
+        allowed_maps = {
+            "gender": {"male": "Male", "female": "Female"},
+            "InternetService": {"dsl": "DSL", "fiber optic": "Fiber optic", "no": "No"},
+            "Contract": {
+                "month-to-month": "Month-to-month",
+                "one year": "One year",
+                "two year": "Two year",
+            },
+            "PaymentMethod": {
+                "electronic check": "Electronic check",
+                "mailed check": "Mailed check",
+                "bank transfer (automatic)": "Bank transfer (automatic)",
+                "credit card (automatic)": "Credit card (automatic)",
+            },
+        }
+
+        field_map = allowed_maps.get(info.field_name, {})
+        if normalized not in field_map:
+            allowed_values = list(field_map.values())
+            raise ValueError(f"Unrecognized {info.field_name}. Allowed values: {allowed_values}")
+
+        return field_map[normalized]
 
     def to_feature_dict(self) -> dict[str, object]:
         return self.model_dump()

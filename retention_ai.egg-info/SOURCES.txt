@@ -12,6 +12,5 @@ src/__init__.py
 src/exception.py
 src/logger.py
 src/utils.py
-src/components/__init__.py
 src/pipeline/__init__.py
 tests/test_api.py
