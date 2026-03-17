@@ -1,7 +1,7 @@
 {
   "model_name": "retention-baseline",
   "model_version": "0.1.0",
-  "artifact_path": "D:\\ML Projects\\retention_ai\\artifacts\\churn_model.joblib",
+  "artifact_path": "churn_model.joblib",
   "feature_columns": [
     "SeniorCitizen",
     "tenure",
